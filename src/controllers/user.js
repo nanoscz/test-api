@@ -16,8 +16,8 @@ class UserController {
     const uuid = req.params.uuid
     User.findOne({
       where: { uuid: uuid }
-    }).then(users => {
-      res.json(users)
+    }).then(user => {
+      res.json(user)
     })
       .catch(err => next(err))
   }
