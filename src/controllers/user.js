@@ -25,7 +25,7 @@ class UserController {
       email: body.email,
       token: body.token
     }
-    body.token = uuidv1()
+    user.token = uuidv1()
     User.create(user)
       .then(() => res.status(201).end())
       .catch(err => next(err))
