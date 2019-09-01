@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       uuid: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false
       },
       query: {

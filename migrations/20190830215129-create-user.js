@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      uuid: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
       username: {
         type: Sequelize.STRING(15),
         allowNull: false
@@ -38,10 +42,6 @@ module.exports = {
         defaultValue: 'ROLE_USER'
       },
       token: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      uuid: {
         type: Sequelize.STRING,
         allowNull: false
       },
