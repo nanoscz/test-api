@@ -6,60 +6,41 @@ const uuidv1 = require('uuid/v1')
 class UserController {
   findAll (req, res, next) {
     User.findAll()
-      .then(users => {
-        res.json(users)
-      })
+      .then(users => res.json(users))
       .catch(err => next(err))
   }
 
   findUuid (req, res, next) {
-    const uuid = req.params.uuid
-    User.findOne({
-      where: { uuid: uuid }
-    }).then(user => {
-      res.json(user)
-    })
+    User.findOne({ where: { uuid: req.params.uuid } })
+      .then(user => res.json(user))
       .catch(err => next(err))
   }
 
   create (req, res, next) {
     const body = req.body
-    body.token = uuidv1()
-    body.uuid = uuidv1()
-    User.create({
+    const user = {
       username: body.username,
       fullname: body.fullname,
       password: body.password,
       email: body.email,
-      token: body.token,
-      uuid: body.uuid
-    })
-      .then(() => {
-        res.status(201).end()
-      })
+      token: body.token
+    }
+    body.token = uuidv1()
+    User.create(user)
+      .then(() => res.status(201).end())
       .catch(err => next(err))
   }
 
   update (req, res, next) {
-    const uuid = req.params.uuid
     const body = req.body
-    User.update(body, {
-      where: {
-        uuid: uuid
-      }
-    })
-      .then(() => {
-        res.status(200).end()
-      })
+    User.update(body, { where: { uuid: req.params.uuid } })
+      .then(() => res.status(200).end())
       .catch(err => next(err))
   }
 
   delete (req, res, next) {
-    const uuid = req.params.uuid
-    User.destroy({ where: { uuid: uuid } })
-      .then(() => {
-        res.status(200).end()
-      })
+    User.destroy({ where: { uuid: req.params.uuid } })
+      .then(() => res.status(200).end())
       .catch(err => next(err))
   }
 }
