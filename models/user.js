@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     email: DataTypes.STRING,
     token: DataTypes.STRING,
-    uuid: DataTypes.STRING
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    }
   }, {
     defaultScope: {
       attributes: { exclude: ['password', 'token'] }
