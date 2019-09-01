@@ -17,4 +17,8 @@ router
   .patch(questionController.update)
   .delete(questionController.delete)
 
+router
+  .route('/:uuid/answers')
+  .get(questionController.findByQuestion)
+
 module.exports = router
