@@ -21,7 +21,19 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       }
-    )
+    ).then(() => {
+      return queryInterface.addColumn('tests',
+        'user_id', {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+          references: {
+            model: 'users',
+            key: 'id'
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL'
+        })
+    })
   },
 
   down: (queryInterface, Sequelize) => {
@@ -35,6 +47,11 @@ module.exports = {
     return queryInterface.removeColumn(
       'answers', // name of Source model
       'question_id' // key we want to remove
-    )
+    ).then(() => {
+      return queryInterface.removeColumn(
+        'tests',
+        'user_id'
+      )
+    })
   }
 };
