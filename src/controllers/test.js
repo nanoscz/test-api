@@ -22,7 +22,7 @@ class TestController {
       type: body.type,
       userId: body.user_id
     }
-    Test.findOrCreate({where: {name: test.name}, defaults: test})
+    Test.findOrCreate({ where: { name: test.name }, defaults: test })
       .then(() => res.status(201).end())
       .catch(err => next(err))
   }

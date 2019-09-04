@@ -5,6 +5,7 @@ const controllers = require('../controllers')
 const express = require('express')
 const router = express.Router()
 const testController = new controllers.TestController()
+
 router
   .route('/')
   .get(testController.findAll)
