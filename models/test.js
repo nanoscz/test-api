@@ -7,13 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     type: DataTypes.STRING,
-    userId: { 
+    userId: {
       type: DataTypes.INTEGER,
       field: 'user_id'
     }
   }, {});
-  test.associate = function(models) {
+  test.associate = function (models) {
     // associations can be defined here
+    test.belongsToMany(models.question, { through: 'testQuestions', foreignKey: 'testId' })
   };
   return test;
 };
