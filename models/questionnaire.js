@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Questionaire.associate = function(models) {
     // associations can be defined here
+    Questionaire.belongsTo(models.question)
+    Questionaire.belongsTo(models.test)
   };
   return Questionaire;
 };

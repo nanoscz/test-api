@@ -10,4 +10,8 @@ router
   .route('/')
   .post(questionnaireController.create)
 
+router
+  .route('/:test')
+  .get(questionnaireController.findByTest)
+
 module.exports = router
