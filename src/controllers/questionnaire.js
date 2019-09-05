@@ -33,16 +33,20 @@ class QuestionnaireController {
       }]
     })
       .then(test => {
-        delete test.dataValues.id
         Questionnaire.findAll({
+          where: {
+            testId: test.id
+          },
           attributes: ['question.*'],
           include: [{
             model: Question,
             attributes: {
               exclude: ['id']
-            }
+            },
+            where: { status: true }
           }]
         }).then((questionnaire) => {
+          delete test.dataValues.id
           res.json({
             test,
             questionnaire
