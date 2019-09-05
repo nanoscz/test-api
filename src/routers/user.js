@@ -17,4 +17,7 @@ router
   .patch(userController.update)
   .delete(userController.delete)
 
-module.exports = router
+module.exports = {
+  login: userController.login,
+  router
+}

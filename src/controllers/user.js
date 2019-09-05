@@ -16,6 +16,28 @@ class UserController {
       .catch(err => next(err))
   }
 
+  login (req, res, next) {
+    User.findOne({
+      where: {
+        username: req.body.username,
+        password: req.body.password
+      }
+    }).then(user => {
+      res.json({
+        user: {
+          username: user.username,
+          fullname: user.fullname,
+          emial: user.emial,
+          uuid: user.uuid,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt
+        },
+        token: user.token
+      })
+    })
+      .catch(err => next(err))
+  }
+
   create (req, res, next) {
     const body = req.body
     const user = {

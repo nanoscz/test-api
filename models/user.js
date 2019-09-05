@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     defaultScope: {
-      attributes: { exclude: ['password', 'token'] }
+      attributes: { exclude: ['password'] }
     }
   });
   User.associate = function(models) {
