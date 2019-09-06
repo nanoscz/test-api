@@ -9,7 +9,7 @@ const compression = require('compression')
 const bodyparser = require('body-parser')
 const chalk = require('chalk')
 
-const { notFound } = require('./src/handlers')
+const { notFound, errorSequelize } = require('./src/handlers')
 
 const nconf = require('nconf')
 const settings = nconf.file({ file: 'config/config.json' })
@@ -28,6 +28,7 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(compression())
 app.use('/v1', router)
+app.use(errorSequelize)
 app.use(notFound)
 
 // Express Error Handler
