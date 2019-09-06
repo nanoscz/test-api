@@ -2,7 +2,6 @@
 
 const User = require('../../models').user
 const uuidv1 = require('uuid/v1')
-
 class UserController {
   findAll (req, res, next) {
     User.findAll()
@@ -55,7 +54,7 @@ class UserController {
 
   delete (req, res, next) {
     User.destroy({ where: { uuid: req.params.uuid } })
-      .then(() => res.status(200).end())
+      .then(() => res.status(204).end())
       .catch(err => next(err))
   }
 }
