@@ -45,6 +45,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      ci: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true
+      },
+      type: {
+        type: Sequelize.ENUM,
+        allowNull: false,
+        values: ['normal', 'google', 'facebook']
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -5,17 +5,22 @@ module.exports = (sequelize, DataTypes) => {
     fullname: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
+    roles: DataTypes.STRING,
     token: DataTypes.STRING,
+    ci: DataTypes.INTEGER,
+    type: DataTypes.ENUM({
+      values: ['normal', 'google', 'facebook']
+    }),
     uuid: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     }
   }, {
-    defaultScope: {
-      attributes: { exclude: ['password'] }
-    }
-  });
-  User.associate = function(models) {
+      defaultScope: {
+        attributes: { exclude: ['password'] }
+      }
+    });
+  User.associate = function (models) {
     // associations can be defined here
     User.hasMany(models.test)
   };

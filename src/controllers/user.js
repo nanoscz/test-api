@@ -40,15 +40,8 @@ class UserController {
 
   create (req, res, next) {
     const body = req.body
-    const user = {
-      username: body.username,
-      fullname: body.fullname,
-      password: body.password,
-      email: body.email,
-      token: body.token
-    }
-    user.token = uuidv1()
-    User.create(user)
+    body.token = uuidv1()
+    User.create(body)
       .then(() => res.status(201).end())
       .catch(err => next(err))
   }
