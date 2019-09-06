@@ -22,17 +22,21 @@ class UserController {
         password: req.body.password
       }
     }).then(user => {
-      res.json({
-        user: {
-          username: user.username,
-          fullname: user.fullname,
-          emial: user.emial,
-          uuid: user.uuid,
-          createdAt: user.createdAt,
-          updatedAt: user.updatedAt
-        },
-        token: user.token
-      })
+      if (!user) {
+        res.status(200).send()
+      } else {
+        res.json({
+          user: {
+            username: user.username,
+            fullname: user.fullname,
+            emial: user.emial,
+            uuid: user.uuid,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
+          },
+          token: user.token
+        })
+      }
     })
       .catch(err => next(err))
   }
