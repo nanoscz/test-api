@@ -18,6 +18,10 @@ module.exports = function errorSequelize (err, req, res, next) {
       error.message = 'Could not connect to database.'
       res.status(500).send(error)
       break
+    case 'SequelizeForeignKeyConstraintError':
+      error.message = 'Foreign key error in the database.'
+      res.status(500).send(error)
+      break
     default:
       res.json(err)
       break
