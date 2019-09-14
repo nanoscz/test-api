@@ -14,6 +14,10 @@ module.exports = function errorSequelize (err, req, res, next) {
       error.message = err
       res.status(400).send(error)
       break
+    case 'SequelizeAccessDeniedError':
+      error.message = 'Could not connect to database.'
+      res.status(500).send(error)
+      break
     default:
       res.json(err)
       break
