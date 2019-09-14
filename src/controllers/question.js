@@ -29,11 +29,10 @@ class QuestionController {
 
   create (req, res, next) {
     const body = req.body
-    const answers = JSON.parse(body.answers)
     Question.create({
       query: body.query,
       multiple: body.multiple,
-      answers: JSON.parse(answers)
+      answers: JSON.parse(body.answers)
     }, {
       include: Answer
     }).then(() => res.status(201).end())
