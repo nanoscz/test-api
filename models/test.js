@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       field: 'user_id'
     }
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: { exclude: ['userId'] }
+    }
+  });
   test.associate = function (models) {
     // associations can be defined here
     test.belongsTo(models.user)
