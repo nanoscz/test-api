@@ -35,7 +35,9 @@ class QuestionController {
       answers: JSON.parse(body.answers)
     }, {
       include: Answer
-    }).then(() => res.status(201).end())
+    }).then((question) => res.status(201).json({
+      id: question.id
+    }))
       .catch(err => next(err))
   }
 
