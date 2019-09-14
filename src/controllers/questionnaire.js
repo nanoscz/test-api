@@ -9,7 +9,6 @@ class QuestionnaireController {
   create (req, res, next) {
     let questionnaire = req.body.questionnaire
     questionnaire = JSON.parse(questionnaire)
-    questionnaire = JSON.parse(questionnaire)
     Questionnaire.bulkCreate(questionnaire)
       .then((questionnaires) => {
         res.status(201).json({
