@@ -20,7 +20,7 @@ module.exports = {
             key: 'id'
           },
           onUpdate: 'CASCADE',
-          onDelete: 'SET NULL'
+          onDelete: 'CASCADE'
         },
         questionId: {
           type: Sequelize.INTEGER,
@@ -30,7 +30,7 @@ module.exports = {
             key: 'id'
           },
           onUpdate: 'CASCADE',
-          onDelete: 'SET NULL'
+          onDelete: 'CASCADE'
         },
         createdAt: {
           allowNull: false,
