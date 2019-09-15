@@ -10,11 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     ci: DataTypes.INTEGER,
     type: DataTypes.ENUM({
       values: ['normal', 'google', 'facebook']
-    }),
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    }
+    })
   }, {
       defaultScope: {
         attributes: { exclude: ['password'] }
