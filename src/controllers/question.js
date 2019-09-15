@@ -10,20 +10,15 @@ class QuestionController {
       .catch(err => next(err))
   }
 
-  findUuid (req, res, next) {
-    const uuid = req.params.uuid
-    Question.findOne({ where: { uuid: uuid } })
+  findOne (req, res, next) {
+    Question.findOne({ where: { id: req.params.id } })
       .then(question => res.json(question))
       .catch(err => next(err))
   }
 
-  findByQuestion (req, res, next) {
-    Question.findOne({ where: { uuid: req.params.uuid } })
-      .then((question) => {
-        Answer.findAll({ where: { questionId: question.id } })
-          .then((answers) => res.json(answers))
-          .catch((err) => next(err))
-      })
+  findByAnswers (req, res, next) {
+    Answer.findAll({ where: { questionId: req.params.id } })
+      .then((answers) => res.json(answers))
       .catch((err) => next(err))
   }
 
@@ -43,14 +38,14 @@ class QuestionController {
 
   update (req, res, next) {
     const body = req.body
-    Question.update(body, { where: { uuid: req.params.uuid } })
+    Question.update(body, { where: { id: req.params.id } })
       .then(() => res.status(200).end())
       .catch(err => next(err))
   }
 
   delete (req, res, next) {
-    Question.destroy({ where: { uuid: req.params.uuid } })
-      .then(() => res.status(200).end())
+    Question.destroy({ where: { id: req.params.id } })
+      .then(() => res.status(204).end())
       .catch(err => next(err))
   }
 }

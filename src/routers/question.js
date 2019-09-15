@@ -12,13 +12,13 @@ router
   .post(questionController.create)
 
 router
-  .route('/:uuid')
-  .get(questionController.findUuid)
+  .route('/:id')
+  .get(questionController.findOne)
   .patch(questionController.update)
   .delete(questionController.delete)
 
 router
-  .route('/:uuid/answers')
-  .get(questionController.findByQuestion)
+  .route('/:id/answers')
+  .get(questionController.findByAnswers)
 
 module.exports = router
