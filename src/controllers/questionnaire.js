@@ -20,14 +20,14 @@ class QuestionnaireController {
 
   findByTest (req, res, next) {
     Test.findOne({
-      where: { uuid: req.params.testId },
+      where: { id: req.params.testId },
       attributes: {
         exclude: ['userId']
       },
       include: [{
         model: User,
         attributes: {
-          exclude: ['id', 'token']
+          exclude: ['token']
         }
       }]
     })
