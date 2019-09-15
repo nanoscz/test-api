@@ -11,7 +11,7 @@ router
   .post(questionnaireController.create)
 
 router
-  .route('/:test')
+  .route('/:testId')
   .get(questionnaireController.findByTest)
 
 module.exports = router
