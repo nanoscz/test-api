@@ -4,7 +4,8 @@ const Answer = require('../../models').answer
 
 class AnswerController {
   findAll (req, res, next) {
-    Answer.findAll()
+    const questionId = req.params.questionId
+    Answer.findAll({ where: { questionId } })
       .then(answers => res.json(answers))
       .catch(err => next(err))
   }

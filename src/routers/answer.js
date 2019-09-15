@@ -8,12 +8,15 @@ const answerController = new controllers.AnswerController()
 
 router
   .route('/')
-  .get(answerController.findAll)
   .post(answerController.create)
 
 router
   .route('/:uuid')
   .patch(answerController.update)
   .delete(answerController.delete)
+
+router
+  .route('/:questionId')
+  .get(answerController.findAll)
 
 module.exports = router
