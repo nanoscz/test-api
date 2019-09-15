@@ -9,8 +9,8 @@ class UserController {
       .catch(err => next(err))
   }
 
-  findUuid (req, res, next) {
-    User.findOne({ where: { uuid: req.params.uuid } })
+  findOne (req, res, next) {
+    User.findOne({ where: { id: req.params.id } })
       .then(user => res.json(user))
       .catch(err => next(err))
   }
@@ -51,13 +51,13 @@ class UserController {
 
   update (req, res, next) {
     const body = req.body
-    User.update(body, { where: { uuid: req.params.uuid } })
+    User.update(body, { where: { id: req.params.id } })
       .then(() => res.status(200).end())
       .catch(err => next(err))
   }
 
   delete (req, res, next) {
-    User.destroy({ where: { uuid: req.params.uuid } })
+    User.destroy({ where: { id: req.params.id } })
       .then(() => res.status(204).end())
       .catch(err => next(err))
   }
