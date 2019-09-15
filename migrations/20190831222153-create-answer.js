@@ -11,10 +11,6 @@ module.exports = {
       text: {
         type: Sequelize.STRING
       },
-      uuid: {
-        type: Sequelize.UUID,
-        allowNull: false
-      },
       points: {
         type: Sequelize.INTEGER
       },
