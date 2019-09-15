@@ -12,8 +12,8 @@ router
   .post(testController.create)
 
 router
-  .route('/:uuid')
-  .get(testController.findUuid)
+  .route('/:id')
+  .get(testController.findOne)
   .patch(testController.update)
   .delete(testController.delete)
 

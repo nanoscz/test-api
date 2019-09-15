@@ -9,8 +9,8 @@ class TestController {
       .catch(err => next(err))
   }
 
-  findUuid (req, res, next) {
-    Test.findOne({ where: { uuid: req.params.uuid } })
+  findOne (req, res, next) {
+    Test.findOne({ where: { id: req.params.id } })
       .then(test => res.json(test))
       .catch(err => next(err))
   }
@@ -23,20 +23,20 @@ class TestController {
       userId: body.user_id
     }
     Test.findOrCreate({ where: { name: test.name }, defaults: test })
-      .then(test => res.status(201).json(test))
+      .then(() => res.status(201).end())
       .catch(err => next(err))
   }
 
   update (req, res, next) {
     const body = req.body
-    Test.update(body, { where: { uuid: req.params.uuid } })
+    Test.update(body, { where: { id: req.params.id } })
       .then(() => res.status(200).end())
       .catch(err => next(err))
   }
 
   delete (req, res, next) {
-    Test.destroy({ where: { uuid: req.params.uuid } })
-      .then(() => res.status(200).end())
+    Test.destroy({ where: { id: req.params.id } })
+      .then(() => res.status(204).end())
       .catch(err => next(err))
   }
 }
