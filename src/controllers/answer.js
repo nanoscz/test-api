@@ -3,13 +3,6 @@
 const Answer = require('../../models').answer
 
 class AnswerController {
-  findAll (req, res, next) {
-    const questionId = req.params.questionId
-    Answer.findAll({ where: { questionId } })
-      .then(answers => res.json(answers))
-      .catch(err => next(err))
-  }
-
   create (req, res, next) {
     const body = req.body
     const answer = {
@@ -23,14 +16,14 @@ class AnswerController {
 
   update (req, res, next) {
     const body = req.body
-    Answer.update(body, { where: { uuid: req.params.uuid } })
+    Answer.update(body, { where: { id: req.params.id } })
       .then(() => res.status(200).end())
       .catch((err) => next(err))
   }
 
   delete (req, res, next) {
-    Answer.destroy({ where: { uuid: req.params.uuid } })
-      .then(() => res.status(200).end())
+    Answer.destroy({ where: { id: req.params.id } })
+      .then(() => res.status(204).end())
       .catch((err) => res.next(err))
   }
 }

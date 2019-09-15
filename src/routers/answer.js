@@ -11,12 +11,8 @@ router
   .post(answerController.create)
 
 router
-  .route('/:uuid')
+  .route('/:id')
   .patch(answerController.update)
   .delete(answerController.delete)
-
-router
-  .route('/:questionId')
-  .get(answerController.findAll)
 
 module.exports = router
