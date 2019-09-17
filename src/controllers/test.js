@@ -20,6 +20,7 @@ class TestController {
     const test = {
       name: body.name,
       type: body.type,
+      description: body.description,
       userId: body.user_id
     }
     Test.findOrCreate({ where: { name: test.name }, defaults: test })
