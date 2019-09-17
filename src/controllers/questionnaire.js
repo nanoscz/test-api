@@ -40,7 +40,7 @@ class QuestionnaireController {
           include: [{
             model: Question,
             attributes: {
-              exclude: ['id']
+              exclude: []
             },
             where: { status: true }
           }]
