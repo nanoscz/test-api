@@ -1,10 +1,29 @@
 'use strict'
 
 const Test = require('../../models').test
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 class TestController {
   findAll (req, res, next) {
-    Test.findAll()
+    const condition = {}
+    if (Object.keys(req.query).length) {
+      const name = req.query.name
+      const description = req.query.description
+      condition.where = {
+        [Op.or]: [{
+          name: {
+            [Op.like]: `%${name}%`
+          }
+        },
+        {
+          description: {
+            [Op.like]: `%${description}%`
+          }
+        }]
+      }
+    }
+    Test.findAll(condition)
       .then(tests => res.json(tests))
       .catch(err => next(err))
   }
