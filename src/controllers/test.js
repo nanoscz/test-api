@@ -22,6 +22,11 @@ class TestController {
           }
         }]
       }
+      if (req.query.range) {
+        const range = req.query.range.split('-')
+        condition.offset = parseInt(range[0], 10)
+        condition.limit = parseInt(range[1], 10)
+      }
     }
     Test.count(condition)
       .then(count => {
