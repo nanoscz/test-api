@@ -1,9 +1,9 @@
 'use strict'
 
 module.exports = function errorSequelize (err, req, res, next) {
+  // res.json(err)
   const error = {
-    name: err.name,
-    internalMessage: err.parent.sqlMessage
+    name: err.name
   }
   switch (err.name) {
     case 'SequelizeUniqueConstraintError':
