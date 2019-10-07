@@ -31,7 +31,12 @@ class TestController {
     Test.count(condition)
       .then(count => {
         Test.findAll(condition)
-          .then(tests => res.json({ tests, count }))
+          .then(tests => {
+            const range = `${req.query.range}/${count}`
+            res.status(206)
+            res.append('Content-Range', range)
+            res.json({ tests, count })
+          })
           .catch(err => next(err))
       })
       .catch(err => next(err))
