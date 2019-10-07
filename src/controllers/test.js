@@ -23,8 +23,12 @@ class TestController {
         }]
       }
     }
-    Test.findAll(condition)
-      .then(tests => res.json(tests))
+    Test.count(condition)
+      .then(count => {
+        Test.findAll(condition)
+          .then(tests => res.json({ tests, count }))
+          .catch(err => next(err))
+      })
       .catch(err => next(err))
   }
 
